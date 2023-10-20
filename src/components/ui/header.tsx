@@ -10,13 +10,21 @@ import {
   ShoppingCartIcon,
 } from "lucide-react";
 
+import Link from "next/link";
+
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Button } from "./button";
 import { Card } from "./card";
 import { Separator } from "./separator";
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "./sheet";
 
 const Header = () => {
   const { status, data } = useSession();
@@ -29,13 +37,6 @@ const Header = () => {
     await signOut();
   };
 
-  const handleCatalogoLink = async () => {
-    window.location.href = "/catalog";
-  };
-
-  const handleHomeLink = async () => {
-    window.location.href = "/";
-  };
   return (
     <Card className="flex justify-between p-[30px]">
       <Sheet>
@@ -67,14 +68,15 @@ const Header = () => {
             </div>
           )}
           <div className="mt-4 flex flex-col gap-4 p-[30px]">
-            <Button
-              variant="outline"
-              className="gap-2"
-              onClick={handleHomeLink}
-            >
-              <HomeIcon size={20} />
-              Inicio
-            </Button>
+            <SheetClose asChild>
+              <Link href="/">
+                <Button variant="outline" className="w-full  gap-2">
+                  <HomeIcon size={20} />
+                  Inicio
+                </Button>
+              </Link>
+            </SheetClose>
+
             {status === "unauthenticated" && (
               <Button
                 onClick={handleLoginClick}
@@ -85,24 +87,28 @@ const Header = () => {
                 Fazer login
               </Button>
             )}
+            <SheetClose asChild>
+              <Link href="/">
+                <Button variant="outline" className="w-full  gap-2">
+                  <PercentIcon size={20} /> Ofertas
+                </Button>
+              </Link>
+            </SheetClose>
 
-            <Button variant="outline" className="gap-2">
-              <PercentIcon size={20} /> Ofertas
-            </Button>
-            <Button
-              variant="outline"
-              className="gap-2"
-              onClick={handleCatalogoLink}
-            >
-              <ListOrderedIcon size={20} />
-              Catálago
-            </Button>
+            <SheetClose asChild>
+              <Link href="/catalog">
+                <Button variant="outline" className="w-full  gap-2">
+                  <ListOrderedIcon size={20} />
+                  Catálago
+                </Button>
+              </Link>
+            </SheetClose>
 
             {status === "authenticated" && (
               <Button
                 onClick={handleLogoutClick}
                 variant="outline"
-                className="gap-2"
+                className="w-full  gap-2"
               >
                 <LogOutIcon size={20} />
                 Fazer logout
