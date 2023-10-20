@@ -28,6 +28,14 @@ const Header = () => {
   const handleLogoutClick = async () => {
     await signOut();
   };
+
+  const handleCatalogoLink = async () => {
+    window.location.href = "/catalog";
+  };
+
+  const handleHomeLink = async () => {
+    window.location.href = "/";
+  };
   return (
     <Card className="flex justify-between p-[30px]">
       <Sheet>
@@ -59,7 +67,11 @@ const Header = () => {
             </div>
           )}
           <div className="mt-4 flex flex-col gap-4 p-[30px]">
-            <Button variant="outline" className="gap-2">
+            <Button
+              variant="outline"
+              className="gap-2"
+              onClick={handleHomeLink}
+            >
               <HomeIcon size={20} />
               Inicio
             </Button>
@@ -77,7 +89,11 @@ const Header = () => {
             <Button variant="outline" className="gap-2">
               <PercentIcon size={20} /> Ofertas
             </Button>
-            <Button variant="outline" className="gap-2">
+            <Button
+              variant="outline"
+              className="gap-2"
+              onClick={handleCatalogoLink}
+            >
               <ListOrderedIcon size={20} />
               Catálago
             </Button>

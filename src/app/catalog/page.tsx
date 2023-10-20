@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { ShapesIcon } from "lucide-react";
-import CategoryList from "./components/category-list";
+import CatalogList from "./components/catalog-list";
 
 const CatalogPage = async () => {
   return (
@@ -12,7 +12,7 @@ const CatalogPage = async () => {
         <ShapesIcon size={16} />
         Catálogo
       </Badge>
-      <CategoryList />
+      <CatalogList />
     </div>
   );
 };
