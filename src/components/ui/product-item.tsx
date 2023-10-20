@@ -1,4 +1,5 @@
 import { ProductWithTotalPrice } from "@/helpers/product";
+import { formattedPrice } from "@/utils/formattedPrice";
 import { ArrowDownIcon } from "lucide-react";
 import Image from "next/image";
 import { Badge } from "./badge";
@@ -40,17 +41,17 @@ const ProductItem = ({ product }: ProductItemProps) => {
           {hasDiscount && (
             <>
               <span className="text-base font-semibold">
-                R$ {product.totalPrice.toFixed(2)}
+                {formattedPrice(product.totalPrice)}
               </span>
               <span className="text-xs line-through opacity-75">
-                R$ {Number(product.basePrice).toFixed(2)}
+                {formattedPrice(Number(product.basePrice))}
               </span>
             </>
           )}
 
           {!hasDiscount && (
             <span className="text-sm font-semibold">
-              R${product.basePrice.toFixed(2)}
+              {formattedPrice(Number(product.basePrice))}
             </span>
           )}
         </div>
