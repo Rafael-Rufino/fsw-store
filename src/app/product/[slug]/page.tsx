@@ -1,4 +1,5 @@
 import ProductList from "@/components/ui/product-list";
+import SectionTitle from "@/components/ui/section-title";
 import computeProductTotalPrice from "@/helpers/product";
 import { prismaClient } from "@/lib/prisma";
 import ProductImages from "../components/product-images";
@@ -37,7 +38,10 @@ const ProductDetailsPage = async ({
     <div className="mb-8 flex flex-col gap-8">
       <ProductImages name={product.name} imageUrls={product.imageUrls} />
       <ProductInfo product={computeProductTotalPrice(product)} />
-      <ProductList products={product.Category.Product} />
+      <div>
+        <SectionTitle text="Produtos Recomendados" />
+        <ProductList products={product.Category.Product} />
+      </div>
     </div>
   );
 };
