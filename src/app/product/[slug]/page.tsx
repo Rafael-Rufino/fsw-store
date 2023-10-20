@@ -1,3 +1,4 @@
+import ProductList from "@/components/ui/product-list";
 import computeProductTotalPrice from "@/helpers/product";
 import { prismaClient } from "@/lib/prisma";
 import ProductImages from "../components/product-images";
@@ -15,14 +16,28 @@ const ProductDetailsPage = async ({
     where: {
       slug: slug,
     },
+    include: {
+      Category: {
+        include: {
+          Product: {
+            where: {
+              slug: {
+                not: slug,
+              },
+            },
+          },
+        },
+      },
+    },
   });
 
   if (!product) return null;
 
   return (
-    <div className="my-8 flex flex-col gap-8">
+    <div className="mb-8 flex flex-col gap-8">
       <ProductImages name={product.name} imageUrls={product.imageUrls} />
       <ProductInfo product={computeProductTotalPrice(product)} />
+      <ProductList products={product.Category.Product} />
     </div>
   );
 };
