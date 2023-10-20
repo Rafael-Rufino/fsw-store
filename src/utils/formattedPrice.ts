@@ -1,14 +1,8 @@
-export function formattedPrice(
-  price: number,
-  locale: string = "pt-BR",
-  currency: string = "BRL",
-  minimumFractionDigits: number = 2,
-  maximumFractionDigits: number = 2,
-): string {
-  return price.toLocaleString(locale, {
+export function formattedPrice(price: number) {
+  const formattedPrice = new Intl.NumberFormat("pt-BR", {
     style: "currency",
-    currency: currency,
-    minimumFractionDigits: minimumFractionDigits,
-    maximumFractionDigits: maximumFractionDigits,
-  });
+    currency: "BRL",
+  }).format(price);
+
+  return formattedPrice;
 }
