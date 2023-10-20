@@ -62,7 +62,7 @@ export default async function Home() {
       />
 
       <div>
-        <SectionTitle text="Headphones" />
+        <SectionTitle text="Fones" />
         <ProductList products={headphones} />
       </div>
     </div>
