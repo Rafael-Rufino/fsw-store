@@ -1,10 +1,8 @@
 import { ProductWithTotalPrice } from "@/helpers/product";
 import { formattedPrice } from "@/utils/formattedPrice";
-import { ArrowDownIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Badge } from "./badge";
-
+import DisconuntBadge from "./discountBadge";
 
 interface ProductItemProps {
   product: ProductWithTotalPrice;
@@ -27,10 +25,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
           />
           <div className="absolute  left-2 top-2 px-2 py-[0.125rem] ">
             {hasDiscount && (
-              <Badge>
-                <ArrowDownIcon size={16} />
-                {product.discountPercentage}%
-              </Badge>
+              <DisconuntBadge>{product.discountPercentage}</DisconuntBadge>
             )}
           </div>
         </div>
