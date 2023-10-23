@@ -30,7 +30,7 @@ const CategoryProducts = async ({
     <div className="flex flex-col gap-8 p-5">
       <Badge
         variant="outline"
-        className="gap-1 border-2 border-primary px-3 py-2 text-base uppercase"
+        className=" w-fit gap-1 border-2 border-primary px-3 py-2 text-base uppercase"
       >
         {CATEGORY_ICON[slug as keyof typeof CATEGORY_ICON]}
         {category?.name}
