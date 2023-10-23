@@ -15,9 +15,12 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { Badge } from "./badge";
 import { Button } from "./button";
 import { Card } from "./card";
+import Cart from "./cart";
 import { Separator } from "./separator";
+
 import {
   Sheet,
   SheetClose,
@@ -125,9 +128,25 @@ const Header = () => {
         </h1>
       </Link>
 
-      <Button size="icon" variant="outline">
-        <ShoppingCartIcon />
-      </Button>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button size="icon" variant="outline">
+            <ShoppingCartIcon />
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="right">
+          <SheetHeader className="text-lef text-lg font-semibold">
+            <Badge
+              variant="outline"
+              className="w-fit gap-1 border-2 border-primary px-3 py-2 text-base uppercase"
+            >
+              <ShoppingCartIcon size={16} />
+              Carrinho
+            </Badge>
+          </SheetHeader>
+          <Cart />
+        </SheetContent>
+      </Sheet>
     </Card>
   );
 };
