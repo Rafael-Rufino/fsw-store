@@ -56,7 +56,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           onClick={handleDecreaseQuantityClick}
           variant="outline"
         >
-          <ArrowLeftIcon />
+          <ArrowLeftIcon size={16} />
         </Button>
         <span className="px-2">{quantity}</span>
         <Button
@@ -64,7 +64,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           onClick={handleIncreaseQuantityClick}
           variant="outline"
         >
-          <ArrowRightIcon />
+          <ArrowRightIcon size={16} />
         </Button>
       </div>
 
