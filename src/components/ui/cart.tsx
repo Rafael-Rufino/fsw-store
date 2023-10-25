@@ -2,31 +2,36 @@ import computeProductTotalPrice from "@/helpers/product";
 import { CartContext } from "@/providers/cart";
 import { useContext } from "react";
 import CartItem from "./cart-item";
-import { Separator } from "./separator";
 
 import PriceRow from "./priceRow";
 import { formattedPrice } from "@/utils/formattedPrice";
+import { ScrollArea } from "./scroll-area";
+import { Button } from "./button";
 
 const Cart = () => {
-  const { products, total, totalDiscount, subtotal } = useContext(CartContext);
-
+  const { products, subtotal, total, totalDiscount } = useContext(CartContext);
   const hasProducts = products.length > 0;
   return (
-    <div className="mt-8 flex flex-col gap-5">
-      <div className="flex flex-col ">
-        {hasProducts ? (
-          products.map((product) => (
-            <CartItem
-              key={product.id}
-              product={computeProductTotalPrice(product as any) as any}
-            />
-          ))
-        ) : (
-          <div className="text-center font-semibold opacity-75">
-            <p>Você ainda não tem nenhum produto no carrinho.</p>
+    <div className="flex h-full flex-col gap-8">
+      <div className="flex h-full max-h-full flex-col gap-5 overflow-hidden">
+        <ScrollArea className="h-full">
+          <div className="mt-8 flex h-full flex-col gap-5">
+            {hasProducts ? (
+              products.map((product) => (
+                <CartItem
+                  key={product.id}
+                  product={computeProductTotalPrice(product as any) as any}
+                />
+              ))
+            ) : (
+              <p className="text-center font-semibold opacity-75">
+                Você ainda não tem nenhum produto no carrinho.
+              </p>
+            )}
           </div>
-        )}
+        </ScrollArea>
       </div>
+
       {hasProducts && (
         <div className="flex flex-col gap-3">
           <PriceRow label="Subtotal" value={formattedPrice(subtotal)} />
@@ -37,6 +42,8 @@ const Cart = () => {
             label="Total"
             value={formattedPrice(total)}
           />
+
+          <Button className="my-7 font-bold uppercase">Finalizar compra</Button>
         </div>
       )}
     </div>
