@@ -26,16 +26,22 @@ const Cart = () => {
           </div>
         )}
       </div>
-      <div className="flex flex-col gap-3">
-        <PriceRow label="Subtotal" value={subtotal} />
-        <Separator />
-        <div className="mt-4 flex items-center justify-between">
-          <small>Entrega</small>
-          <small className="uppercase">Grátis</small>
+      {hasProducts && (
+        <div className="flex flex-col gap-3">
+          <PriceRow label="Subtotal" value={subtotal} />
+          <Separator />
+          <div className="mt-4 flex items-center justify-between">
+            <small>Entrega</small>
+            <small className="uppercase">Grátis</small>
+          </div>
+          <PriceRow label="Desconto" value={totalDiscount} />
+          <PriceRow
+            className="text-base font-bold"
+            label="Total"
+            value={total}
+          />
         </div>
-        <PriceRow label="Total de Desconto" value={totalDiscount} />
-        <PriceRow className="text-base font-bold" label="Total" value={total} />
-      </div>
+      )}
     </div>
   );
 };
