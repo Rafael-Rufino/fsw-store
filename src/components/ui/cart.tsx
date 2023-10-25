@@ -5,6 +5,7 @@ import CartItem from "./cart-item";
 import { Separator } from "./separator";
 
 import PriceRow from "./priceRow";
+import { formattedPrice } from "@/utils/formattedPrice";
 
 const Cart = () => {
   const { products, total, totalDiscount, subtotal } = useContext(CartContext);
@@ -28,17 +29,13 @@ const Cart = () => {
       </div>
       {hasProducts && (
         <div className="flex flex-col gap-3">
-          <PriceRow label="Subtotal" value={subtotal} />
-          <Separator />
-          <div className="mt-4 flex items-center justify-between">
-            <small>Entrega</small>
-            <small className="uppercase">Grátis</small>
-          </div>
-          <PriceRow label="Desconto" value={totalDiscount} />
+          <PriceRow label="Subtotal" value={formattedPrice(subtotal)} />
+          <PriceRow label="Entrega" className="uppercase" value="Grátis" />
+          <PriceRow label="Desconto" value={formattedPrice(totalDiscount)} />
           <PriceRow
             className="text-base font-bold"
             label="Total"
-            value={total}
+            value={formattedPrice(total)}
           />
         </div>
       )}
