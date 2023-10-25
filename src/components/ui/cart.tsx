@@ -7,10 +7,21 @@ import PriceRow from "./priceRow";
 import { formattedPrice } from "@/utils/formattedPrice";
 import { ScrollArea } from "./scroll-area";
 import { Button } from "./button";
+import { createCheckout } from "@/actions/checkout";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
   const { products, subtotal, total, totalDiscount } = useContext(CartContext);
   const hasProducts = products.length > 0;
+
+  const handleFinishPurchaseClick = async () => {
+    const checkout = await createCheckout(products);
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+
+    stripe?.redirectToCheckout({
+      sessionId: checkout.id,
+    });
+  };
   return (
     <div className="flex h-full flex-col gap-8">
       <div className="flex h-full max-h-full flex-col gap-5 overflow-hidden">
@@ -43,7 +54,12 @@ const Cart = () => {
             value={formattedPrice(total)}
           />
 
-          <Button className="my-7 font-bold uppercase">Finalizar compra</Button>
+          <Button
+            onClick={handleFinishPurchaseClick}
+            className="my-7 font-bold uppercase"
+          >
+            Finalizar compra
+          </Button>
         </div>
       )}
     </div>
