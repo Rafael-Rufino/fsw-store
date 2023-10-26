@@ -91,7 +91,7 @@ const Header = () => {
               </Button>
             )}
             <SheetClose asChild>
-              <Link href="/">
+              <Link href="/deals">
                 <Button variant="outline" className="w-full  gap-2">
                   <PercentIcon size={20} /> Ofertas
                 </Button>
