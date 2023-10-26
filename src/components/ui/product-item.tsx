@@ -20,7 +20,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
             width={0}
             height={0}
             sizes="100vw"
-            className="h-auto max-h-[70%] w-auto max-w-[80%]"
+            className="h-auto max-h-[70%] w-auto max-w-[80%] object-contain"
             style={{ objectFit: "contain" }}
           />
           <div className="absolute  left-2 top-2 px-2 py-[0.125rem] ">
