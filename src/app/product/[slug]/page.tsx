@@ -4,6 +4,7 @@ import computeProductTotalPrice from "@/helpers/product";
 import { prismaClient } from "@/lib/prisma";
 import ProductImages from "../components/product-images";
 import ProductInfo from "../components/product-info";
+import Loading from "@/app/loading";
 interface ProductDetailsPageProps {
   params: {
     slug: string;
@@ -32,7 +33,7 @@ const ProductDetailsPage = async ({
     },
   });
 
-  if (!product) return null;
+  if (!product) return <Loading />;
 
   return (
     <div className="mb-8 flex flex-col gap-8">

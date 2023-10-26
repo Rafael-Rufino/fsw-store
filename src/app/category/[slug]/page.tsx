@@ -1,3 +1,4 @@
+import Loading from "@/app/loading";
 import { Badge } from "@/components/ui/badge";
 import ProductItem from "@/components/ui/product-item";
 import { CATEGORY_ICON } from "@/constants/category-icon";
@@ -23,7 +24,7 @@ const CategoryProducts = async ({
   });
 
   if (!category) {
-    return null;
+    return <Loading />;
   }
 
   return (
