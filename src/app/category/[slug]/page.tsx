@@ -36,7 +36,7 @@ const CategoryProducts = async ({
         {category?.name}
       </Badge>
 
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:md:grid-cols-4">
         {category.Product.map((product) => (
           <ProductItem
             key={product.id}
