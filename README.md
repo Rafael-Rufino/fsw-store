@@ -11,7 +11,7 @@
 
 ## :bookmark: Sobre
 
-<strong>FSW-Store é uma aplicação Mobile Firs de E-commerce de produtos eletrônicos, desenvolvida durante a semana Full Stack Week, em parceria com Felipe Rocha.</strong>
+<strong>FSW-Store é uma aplicação Mobile First de E-commerce de produtos eletrônicos, desenvolvida durante a semana Full Stack Week, em parceria com Felipe Rocha.</strong>
 
 ## :heavy_check_mark: :iphone: Versão Mobile Firs
 
