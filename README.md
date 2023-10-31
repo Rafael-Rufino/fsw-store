@@ -63,15 +63,6 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 
 ```
 
-3. Executando os testes:
-
-```sh
-  # rodando os testes
-  $ yarn test
-  ou
-  $ npm run test
-```
-
 <a id="como-contribuir"></a>
 
 # :recycle: Como contribuir
