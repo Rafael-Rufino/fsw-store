@@ -7,6 +7,7 @@ import {
   LogOutIcon,
   MenuIcon,
   PercentIcon,
+  SearchIcon,
   ShoppingCartIcon,
 } from "lucide-react";
 
@@ -14,13 +15,15 @@ import Link from "next/link";
 
 import { signIn, signOut, useSession } from "next-auth/react";
 
+import SearchProducts from "@/app/(home)/components/search-products";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Badge } from "./badge";
 import { Button } from "./button";
 import { Card } from "./card";
 import Cart from "./cart";
 import { Separator } from "./separator";
-
 import {
   Sheet,
   SheetClose,
@@ -39,6 +42,7 @@ const Header = () => {
   const handleLogoutClick = async () => {
     await signOut();
   };
+  const [inputSearch, setInputSearch] = useState<boolean>(false);
 
   return (
     <Card className="flex justify-between p-[30px]">
@@ -121,32 +125,56 @@ const Header = () => {
         </SheetContent>
       </Sheet>
 
-      <Link href="/">
-        <h1 className="text-lg font-semibold">
+      <Link href="/" className="flex items-center justify-center gap-1">
+        <h1 className=" text-lg font-semibold">
           <span className="text-primary"> FSW </span>
           Store
         </h1>
       </Link>
 
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button size="icon" variant="outline">
-            <ShoppingCartIcon />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="right">
-          <SheetHeader className="text-lef text-lg font-semibold">
-            <Badge
-              variant="outline"
-              className="w-fit gap-1 border-2 border-primary px-3 py-2 text-base uppercase"
+      <div className="flex flex-row gap-4">
+        <div className="relative hidden lg:block">
+          {inputSearch && (
+            <motion.span
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: "230px" }}
+              exit={{ opacity: 0, width: 0 }}
+              onBlur={() => setInputSearch(false)}
+              className="absolute right-0 top-0 w-[230px]"
             >
-              <ShoppingCartIcon size={16} />
-              Carrinho
-            </Badge>
-          </SheetHeader>
-          <Cart />
-        </SheetContent>
-      </Sheet>
+              <SearchProducts setInputSearch={setInputSearch} />
+            </motion.span>
+          )}
+          <Button
+            variant="outline"
+            size="icon"
+            className="items-center justify-center lg:flex"
+            onClick={() => setInputSearch(true)}
+          >
+            <SearchIcon />
+          </Button>
+        </div>
+
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button size="icon" variant="outline">
+              <ShoppingCartIcon />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right">
+            <SheetHeader className="text-lef text-lg font-semibold">
+              <Badge
+                variant="outline"
+                className="w-fit gap-1 border-2 border-primary px-3 py-2 text-base uppercase"
+              >
+                <ShoppingCartIcon size={16} />
+                Carrinho
+              </Badge>
+            </SheetHeader>
+            <Cart />
+          </SheetContent>
+        </Sheet>
+      </div>
     </Card>
   );
 };
