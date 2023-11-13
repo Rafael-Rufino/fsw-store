@@ -3,12 +3,13 @@ import { CartContext } from "@/providers/cart";
 import { useContext } from "react";
 import CartItem from "./cart-item";
 
-import PriceRow from "./priceRow";
-import { formattedPrice } from "@/utils/formattedPrice";
-import { ScrollArea } from "./scroll-area";
-import { Button } from "./button";
 import { createCheckout } from "@/actions/checkout";
+import { formattedPrice } from "@/utils/formattedPrice";
 import { loadStripe } from "@stripe/stripe-js";
+import Image from "next/image";
+import { Button } from "./button";
+import PriceRow from "./priceRow";
+import { ScrollArea } from "./scroll-area";
 
 const Cart = () => {
   const { products, subtotal, total, totalDiscount } = useContext(CartContext);
@@ -35,9 +36,20 @@ const Cart = () => {
                 />
               ))
             ) : (
-              <p className="text-center font-semibold opacity-75">
-                Você ainda não tem nenhum produto no carrinho.
-              </p>
+              <div className="flex flex-col">
+                <p className="text-center font-semibold opacity-75">
+                  Você não adicionou itens ao carrinho!
+                </p>
+
+                <Image
+                  src="/empty-cart.svg"
+                  alt="Carrinho vazio"
+                  width={0}
+                  height={0}
+                  className="mx-auto mt-8 w-40 lg:w-[300px]"
+                  sizes="100vw"
+                />
+              </div>
             )}
           </div>
         </ScrollArea>
