@@ -13,6 +13,8 @@ import {
 
 import Link from "next/link";
 
+import { usePathname } from "next/navigation";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,8 +54,13 @@ const Header = () => {
   };
   const [inputSearch, setInputSearch] = useState<boolean>(false);
 
+  const router = usePathname();
+
+  const isActive = (path: string) => router === path;
+
   return (
     <Card className="flex justify-between p-[30px]">
+      {/* mobile */}
       <div className="lg:hidden">
         <Sheet>
           <SheetTrigger asChild>
@@ -88,7 +95,10 @@ const Header = () => {
             <div className="mt-4 flex flex-col gap-4 p-[30px]">
               <SheetClose asChild>
                 <Link href="/">
-                  <Button variant="outline" className="w-full  gap-2">
+                  <Button
+                    variant={isActive("/") ? "default" : "outline"}
+                    className="w-full  gap-2"
+                  >
                     <HomeIcon size={20} />
                     Inicio
                   </Button>
@@ -107,7 +117,10 @@ const Header = () => {
               )}
               <SheetClose asChild>
                 <Link href="/deals">
-                  <Button variant="outline" className="w-full  gap-2">
+                  <Button
+                    variant={isActive("/deals") ? "default" : "outline"}
+                    className="w-full  gap-2"
+                  >
                     <PercentIcon size={20} /> Ofertas
                   </Button>
                 </Link>
@@ -115,7 +128,10 @@ const Header = () => {
 
               <SheetClose asChild>
                 <Link href="/catalog">
-                  <Button variant="outline" className="w-full  gap-2">
+                  <Button
+                    variant={isActive("/catalog") ? "default" : "outline"}
+                    className="w-full  gap-2"
+                  >
                     <ListOrderedIcon size={20} />
                     Catálago
                   </Button>
@@ -126,7 +142,7 @@ const Header = () => {
                 <Button
                   onClick={handleLogoutClick}
                   variant="outline"
-                  className="w-full  gap-2"
+                  className="w-full gap-2 bg-red-600 hover:bg-red-500"
                 >
                   <LogOutIcon size={20} />
                   Fazer logout
@@ -144,25 +160,35 @@ const Header = () => {
         </h1>
       </Link>
 
+      {/* Desktop */}
       <div className="  hidden flex-row  items-center justify-center md:block">
         <div className=" mt-4 flex items-center  justify-center gap-4 ">
           <Link href="/">
-            <Button variant="ghost" className="w-full  gap-2">
+            <Button
+              variant={isActive("/") ? "link" : "ghost"}
+              className="w-full gap-2"
+            >
               <HomeIcon size={20} />
-              Inicio
+              Início
             </Button>
           </Link>
 
           <Link href="/deals">
-            <Button variant="ghost" className="w-full  gap-2">
+            <Button
+              variant={isActive("/deals") ? "link" : "ghost"}
+              className="w-full gap-2"
+            >
               <PercentIcon size={20} /> Ofertas
             </Button>
           </Link>
 
           <Link href="/catalog">
-            <Button variant="ghost" className="w-full  gap-2">
+            <Button
+              variant={isActive("/catalog") ? "link" : "ghost"}
+              className="w-full gap-2"
+            >
               <ListOrderedIcon size={20} />
-              Catálago
+              Catálogo
             </Button>
           </Link>
         </div>
@@ -170,6 +196,7 @@ const Header = () => {
 
       <div className="flex  flex-row items-center justify-center gap-2">
         <div className="relative hidden flex-row items-center gap-2  lg:flex">
+          {/* butão de pesquisa */}
           <div className="relative hidden lg:block">
             {inputSearch && (
               <motion.span
@@ -191,6 +218,7 @@ const Header = () => {
               <SearchIcon />
             </Button>
           </div>
+          {/* dropdow-perfil */}
           {status === "authenticated" && (
             <DropdownMenu>
               <DropdownMenuTrigger>
@@ -203,7 +231,7 @@ const Header = () => {
                   </Avatar>
                 </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="py-4">
+              <DropdownMenuContent className="px-5 py-4">
                 <div className="flex flex-col ">
                   <div className="flex items-center gap-2 pb-4 pl-2">
                     <div className="flex flex-col">
@@ -216,13 +244,19 @@ const Header = () => {
 
                 <div className=" mt-4 flex flex-col items-start justify-start gap-4 ">
                   <Link href="/deals">
-                    <Button variant="ghost" className="w-full  gap-2">
+                    <Button
+                      variant={isActive("/deals") ? "link" : "ghost"}
+                      className="w-full  gap-2"
+                    >
                       <PercentIcon size={20} /> Ofertas
                     </Button>
                   </Link>
 
                   <Link href="/catalog">
-                    <Button variant="ghost" className="w-full  gap-2">
+                    <Button
+                      variant={isActive("/catalog") ? "link" : "ghost"}
+                      className="w-full  gap-2"
+                    >
                       <ListOrderedIcon size={20} />
                       Catálago
                     </Button>
@@ -230,8 +264,8 @@ const Header = () => {
 
                   <Button
                     onClick={handleLogoutClick}
-                    variant="ghost"
-                    className="w-full  gap-2"
+                    variant="outline"
+                    className="w-full  gap-2 bg-red-600 hover:bg-red-500"
                   >
                     <LogOutIcon size={20} />
                     Fazer logout
@@ -245,7 +279,7 @@ const Header = () => {
             <Button
               onClick={handleLoginClick}
               variant="ghost"
-              className="gap-2"
+              className="gap-2 "
             >
               <LogInIcon size={20} />
               Fazer login
@@ -253,6 +287,7 @@ const Header = () => {
           )}
         </div>
 
+        {/* carrinho */}
         <Sheet>
           <SheetTrigger asChild>
             <Button size="icon" variant="outline">
