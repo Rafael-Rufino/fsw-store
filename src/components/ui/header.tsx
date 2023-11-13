@@ -168,8 +168,8 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="flex  flex-row items-center justify-center gap-4">
-        <div className="relative hidden flex-row items-center gap-4  lg:flex">
+      <div className="flex  flex-row items-center justify-center gap-2">
+        <div className="relative hidden flex-row items-center gap-2  lg:flex">
           <div className="relative hidden lg:block">
             {inputSearch && (
               <motion.span
@@ -194,19 +194,40 @@ const Header = () => {
           {status === "authenticated" && (
             <DropdownMenu>
               <DropdownMenuTrigger>
-                {status === "authenticated" && (
-                  <div className="flex items-center">
-                    <Avatar>
-                      <AvatarFallback>{data?.user?.name?.[0]}</AvatarFallback>
-                      {data?.user?.image && (
-                        <AvatarImage src={data?.user?.image} />
-                      )}
-                    </Avatar>
-                  </div>
-                )}
+                <div className="flex items-center">
+                  <Avatar>
+                    <AvatarFallback>{data?.user?.name?.[0]}</AvatarFallback>
+                    {data?.user?.image && (
+                      <AvatarImage src={data?.user?.image} />
+                    )}
+                  </Avatar>
+                </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                {status === "authenticated" && (
+              <DropdownMenuContent className="py-4">
+                <div className="flex flex-col ">
+                  <div className="flex items-center gap-2 pb-4 pl-2">
+                    <div className="flex flex-col">
+                      <span className="font-medium">{data?.user?.name} </span>
+                      <p className="text-sm opacity-75">Boas compras!</p>
+                    </div>
+                  </div>
+                  <Separator />
+                </div>
+
+                <div className=" mt-4 flex flex-col items-start justify-start gap-4 ">
+                  <Link href="/deals">
+                    <Button variant="ghost" className="w-full  gap-2">
+                      <PercentIcon size={20} /> Ofertas
+                    </Button>
+                  </Link>
+
+                  <Link href="/catalog">
+                    <Button variant="ghost" className="w-full  gap-2">
+                      <ListOrderedIcon size={20} />
+                      Catálago
+                    </Button>
+                  </Link>
+
                   <Button
                     onClick={handleLogoutClick}
                     variant="ghost"
@@ -215,7 +236,7 @@ const Header = () => {
                     <LogOutIcon size={20} />
                     Fazer logout
                   </Button>
-                )}
+                </div>
               </DropdownMenuContent>
             </DropdownMenu>
           )}
