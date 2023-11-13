@@ -28,7 +28,7 @@ const CategoryProducts = async ({
   }
 
   return (
-    <div className="flex flex-col gap-8 p-5">
+    <div className="flex flex-col gap-8 p-5 lg:mx-auto  lg:max-w-screen-xl 2xl:max-w-screen-2xl">
       <Badge
         variant="outline"
         className=" w-fit gap-1 border-2 border-primary px-3 py-2 text-base uppercase"
