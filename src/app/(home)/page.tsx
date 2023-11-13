@@ -1,8 +1,11 @@
-import ProductList from "@/components/ui/product-list";
-import SectionTitle from "@/components/ui/section-title";
+import { SectionProduct } from "@/components/ui/section-product";
 import { prismaClient } from "@/lib/prisma";
+
+import Link from "next/link";
+
 import Categories from "./components/categories";
 import PromoBanner from "./components/promo-banner";
+import SearchProducts from "./components/search-products";
 
 export default async function Home() {
   const deals = await prismaClient.product.findMany({
@@ -28,42 +31,67 @@ export default async function Home() {
       },
     },
   });
+
   return (
-    <div className="flex flex-col gap-8 py-8 ">
-      <div>
+    <div className="flex flex-col gap-8 pb-8 ">
+      <div className="px-5 pt-6 lg:hidden">
+        <SearchProducts />
+      </div>
+      <Link href="/deals" className="hidden lg:block">
         <PromoBanner
-          src="/banner-home-01.png"
+          src="/desktop-banner.png"
           alt="Até 55% de desconto esse mês!"
+          className="w-full"
         />
-      </div>
+      </Link>
+      <div className="flex flex-col gap-8 lg:mx-auto  lg:max-w-screen-xl 2xl:max-w-screen-2xl">
+        <Link href="/deals" className="lg:hidden">
+          <PromoBanner
+            src="/mobile-banner.png"
+            alt="Até 55% de desconto esse mês!"
+            className="px-5 pb-8"
+          />
+        </Link>
 
-      <div className="px-5">
-        <Categories />
-      </div>
+        <div className="px-5">
+          <Categories />
+        </div>
 
-      <div>
-        <SectionTitle text="Ofertas" />
-        <ProductList products={deals} />
-      </div>
+        <SectionProduct title="Ofertas" products={deals} />
 
-      <PromoBanner
-        src="/banner-mouses.png"
-        alt="Até 55% de desconto em mouses!"
-      />
+        <div className="flex flex-col gap-8 px-5 lg:flex-row">
+          <Link href="/category/mouses" className="lg:w-1/2">
+            <PromoBanner
+              src="/banner-mouses.png"
+              alt="Até 55% de desconto em mouses!"
+            />
+          </Link>
+          <Link href="/category/headphones" className="hidden w-1/2 lg:block">
+            <PromoBanner
+              src="/banner-fones.png"
+              alt="Até 55% de desconto em headphones!"
+              className="hidden w-1/2 lg:block"
+            />
+          </Link>
+        </div>
 
-      <div>
-        <SectionTitle text="Teclados" />
-        <ProductList products={keyboards} />
-      </div>
+        <SectionProduct title="Teclados" products={keyboards} />
 
-      <PromoBanner
-        src="/banner-fones.png"
-        alt="Até 55% de desconto em headphones!"
-      />
+        <Link href="/category/headphones" className="lg:hidden">
+          <PromoBanner
+            src="/banner-fones.png"
+            alt="Até 55% de desconto em headphones!"
+            className="px-5"
+          />
+        </Link>
 
-      <div>
-        <SectionTitle text="Fones" />
-        <ProductList products={headphones} />
+        <PromoBanner
+          src="/banner-free-shipping.png"
+          alt="Frete grátis para todo brasil!"
+          className="hidden px-5 lg:block"
+        />
+
+        <SectionProduct title="Fones" products={headphones} />
       </div>
     </div>
   );
