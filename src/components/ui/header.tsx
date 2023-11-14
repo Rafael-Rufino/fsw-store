@@ -6,6 +6,7 @@ import {
   LogInIcon,
   LogOutIcon,
   MenuIcon,
+  PackageSearchIcon,
   PercentIcon,
   SearchIcon,
   ShoppingCartIcon,
@@ -101,6 +102,18 @@ const Header = () => {
                   >
                     <HomeIcon size={20} />
                     Inicio
+                  </Button>
+                </Link>
+              </SheetClose>
+
+              <SheetClose asChild>
+                <Link href="/orders">
+                  <Button
+                    variant={isActive("/orders") ? "default" : "outline"}
+                    className="w-full  gap-2"
+                  >
+                    <PackageSearchIcon size={20} />
+                    Meus Pedidos
                   </Button>
                 </Link>
               </SheetClose>
