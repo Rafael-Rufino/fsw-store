@@ -38,7 +38,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
           <div className="flex items-center justify-between gap-2">
             {hasDiscount && (
               <>
-                <span className="text-base font-semibold">
+                <span className="text-sm font-semibold">
                   {formattedPrice(product.totalPrice)}
                 </span>
                 <span className="text-xs line-through opacity-75">

@@ -16,14 +16,14 @@ const ProductImages = ({ imageUrls, name }: ProductImagesProps) => {
   };
   return (
     <div className="flex flex-col">
-      <div className="flex  h-[380] w-full items-center justify-center bg-accent">
+      <div className="flex  h-[320px] w-full items-center justify-center bg-accent">
         <Image
           src={currentImageUrl}
           width={0}
           height={0}
           alt={name}
           sizes="100vw"
-          className="h-auto max-h-[380px] w-auto max-w-[80%]"
+          className="h-full max-h-[340px] w-auto max-w-[80%]"
           style={{
             objectFit: "contain",
           }}

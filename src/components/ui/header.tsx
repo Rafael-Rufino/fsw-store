@@ -294,7 +294,7 @@ const Header = () => {
               <ShoppingCartIcon />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right">
+          <SheetContent side="right" className="w-full">
             <SheetHeader className="text-lef text-lg font-semibold">
               <Badge
                 variant="outline"

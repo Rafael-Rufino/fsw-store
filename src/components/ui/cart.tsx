@@ -24,9 +24,9 @@ const Cart = () => {
     });
   };
   return (
-    <div className="flex h-full flex-col gap-8">
-      <div className="flex h-full max-h-full flex-col gap-5 overflow-hidden">
-        <ScrollArea className="h-full">
+    <div className="flex h-full flex-col gap-8  ">
+      <div className="flex h-full  max-h-full flex-col gap-5 overflow-hidden">
+        <ScrollArea className="h-full ">
           <div className="mt-8 flex h-full flex-col gap-5">
             {hasProducts ? (
               products.map((product) => (
