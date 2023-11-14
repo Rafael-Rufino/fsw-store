@@ -204,6 +204,15 @@ const Header = () => {
               Catálogo
             </Button>
           </Link>
+          <Link href="/orders">
+            <Button
+              variant={isActive("/orders") ? "link" : "ghost"}
+              className="w-full  gap-2"
+            >
+              <PackageSearchIcon size={20} />
+              Meus Pedidos
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -272,6 +281,15 @@ const Header = () => {
                     >
                       <ListOrderedIcon size={20} />
                       Catálago
+                    </Button>
+                  </Link>
+                  <Link href="/orders">
+                    <Button
+                      variant={isActive("/orders") ? "link" : "ghost"}
+                      className="w-full  gap-2"
+                    >
+                      <PackageSearchIcon size={20} />
+                      Meus Pedidos
                     </Button>
                   </Link>
 
