@@ -1,9 +1,21 @@
-import Image from "next/image";
 import { CartContext, CartProduct } from "@/providers/cart";
 import { formattedPrice } from "@/utils/formattedPrice";
-import { Button } from "./button";
 import { ArrowLeftIcon, ArrowRightIcon, TrashIcon } from "lucide-react";
+import Image from "next/image";
 import { useContext } from "react";
+import { Button } from "./button";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface CartItemProps {
   product: CartProduct;
@@ -74,14 +86,27 @@ const CartItem = ({ product }: CartItemProps) => {
           </div>
         </div>
       </div>
-
-      <Button
-        size="icon"
-        variant="outline"
-        onClick={handleRemoveProductFromCart}
-      >
-        <TrashIcon size={16} />
-      </Button>
+      <AlertDialog>
+        <AlertDialogTrigger className="hover:opacity-75">
+          <TrashIcon size={20} />
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              Tem certeza que deseja remover o esse Item do carrinho?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              Esta ação não poderá ser desfeita!
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={handleRemoveProductFromCart}>
+              Deletar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
