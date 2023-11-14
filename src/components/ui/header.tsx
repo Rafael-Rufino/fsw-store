@@ -62,7 +62,7 @@ const Header = () => {
   return (
     <Card className="flex justify-between p-[30px]">
       {/* mobile */}
-      <div className="lg:hidden">
+      <div className=" lg:hidden">
         <Sheet>
           <SheetTrigger asChild>
             <Button size="icon" variant="outline">
@@ -70,8 +70,8 @@ const Header = () => {
             </Button>
           </SheetTrigger>
 
-          <SheetContent side="left">
-            <SheetHeader className="text-left text-lg font-semibold">
+          <SheetContent side="left" className="w-full">
+            <SheetHeader className="text-left text-lg font-semibold ">
               Menu
             </SheetHeader>
 
@@ -174,7 +174,7 @@ const Header = () => {
       </Link>
 
       {/* Desktop */}
-      <div className="  hidden flex-row  items-center justify-center md:block">
+      <div className="  hidden flex-row  items-center justify-center lg:block">
         <div className=" mt-4 flex items-center  justify-center gap-4 ">
           <Link href="/">
             <Button

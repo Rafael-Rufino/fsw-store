@@ -11,7 +11,7 @@ export const createOrder = async (
     data: {
       userId,
       status: "WAITING_FOR_PAYMENT",
-      orderProducts: {
+      orderproducts: {
         createMany: {
           data: cartProducts.map((product) => ({
             basePrice: product.basePrice,
