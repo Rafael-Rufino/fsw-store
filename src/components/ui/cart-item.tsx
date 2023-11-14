@@ -93,7 +93,7 @@ const CartItem = ({ product }: CartItemProps) => {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
-              Tem certeza que deseja remover o esse Item do carrinho?
+              {` Tem certeza que deseja remover o esse Item "${product.name}" do carrinho?`}
             </AlertDialogTitle>
             <AlertDialogDescription>
               Esta ação não poderá ser desfeita!
