@@ -32,7 +32,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
     });
   };
   return (
-    <div className="flex flex-col px-5">
+    <div className="flex flex-col px-5 lg:rounded-[10px] lg:bg-accent  lg:py-10">
       <h2 className="text-lg">{product.name}</h2>
 
       <div className="flex items-center gap-2">
@@ -80,7 +80,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         Adicionar ao carrinho
       </Button>
 
-      <div className="mt-8 flex  items-center justify-between  rounded-lg bg-accent px-5 py-2">
+      <div className="mt-4 flex  items-center justify-between  rounded-lg bg-accent px-5 py-2 lg:bg-[#2A2A2A]">
         <div className="flex items-center gap-2">
           <TruckIcon size={24} />
 
@@ -94,7 +94,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           </div>
         </div>
         <div>
-          <span className="text-xs font-bold ">Frete Grátis</span>
+          <span className="text-xs font-bold lg:mt-5 ">Frete Grátis</span>
         </div>
       </div>
     </div>
