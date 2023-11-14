@@ -7,6 +7,7 @@ import { CartContext } from "@/providers/cart";
 import { formattedPrice } from "@/utils/formattedPrice";
 import { ArrowLeftIcon, ArrowRightIcon, TruckIcon } from "lucide-react";
 import { useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 interface ProductInfoProps {
   product: ProductWithTotalPrice;
@@ -26,10 +27,16 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
   };
 
   const handleAddToCartProduct = () => {
-    addProductToCart({
-      ...product,
-      quantity,
-    });
+    try {
+      addProductToCart({
+        ...product,
+        quantity,
+      });
+      toast.success("Produto adicionado ao carrinho!");
+    } catch (error) {
+      toast.error("Ocorreu um erro ao adicionar o produto ao carrinho.");
+      console.error("Erro ao adicionar produto ao carrinho:", error);
+    }
   };
   return (
     <div className="flex flex-col px-5 lg:rounded-[10px] lg:bg-accent  lg:py-10">

@@ -9,6 +9,7 @@ import { formattedPrice } from "@/utils/formattedPrice";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { toast } from "react-toastify";
 import { Button } from "./button";
 import PriceRow from "./priceRow";
 import { ScrollArea } from "./scroll-area";
@@ -20,17 +21,30 @@ const Cart = () => {
 
   const handleFinishPurchaseClick = async () => {
     if (!data?.user) {
-      return;
+      return toast.error("Você precisa estar logado para finalizar a compra!");
     }
-    const order = await createOrder(products, (data?.user as any).id);
 
-    const checkout = await createCheckout(products, order.id);
+    try {
+      const order = await createOrder(products, (data?.user as any).id);
+      const checkout = await createCheckout(products, order.id);
 
-    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+      const stripe = await loadStripe(
+        process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY,
+      );
 
-    stripe?.redirectToCheckout({
-      sessionId: checkout.id,
-    });
+      stripe?.redirectToCheckout({
+        sessionId: checkout.id,
+      });
+
+      toast.success("Você está quase lá, agora é só efetuar o pagamento!", {
+        autoClose: 5000,
+      });
+    } catch (error) {
+      toast.error(
+        "Ocorreu um erro ao processar a compra. Tente novamente mais tarde.",
+      );
+      console.error("Erro ao finalizar a compra:", error);
+    }
   };
   return (
     <div className="flex h-full flex-col gap-8  ">
