@@ -194,8 +194,8 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="flex  flex-row items-center justify-center gap-2">
-        <div className="relative hidden flex-row items-center gap-2  lg:flex">
+      <div className="flex  flex-row items-center justify-center gap-4">
+        <div className="relative hidden flex-row items-center gap-4  lg:flex">
           {/* butão de pesquisa */}
           <div className="relative hidden lg:block">
             {inputSearch && (
